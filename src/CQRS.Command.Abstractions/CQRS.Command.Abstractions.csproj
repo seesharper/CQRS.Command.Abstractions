@@ -3,11 +3,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Packable>true</Packable>
     <Authors>Bernhard Richter</Authors>
-    <Description>Contains only the interfaces needed to implement command handlers.</Description>
+    <Description>Contains only the ICommandHandler and ICommandExecutor interfaces needed to implement and execute command handlers.</Description>
     <Copyright>Bernhard Richter</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
-    <PackageProjectUrl>https://github.com/seesharper/CQRS.Concepts</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/seesharper/CQRS.Concepts</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/seesharper/CQRS.Command.Abstractions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/seesharper/CQRS.Command.Abstractions</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>CQRS AspNetCore Dotnet</PackageTags>
     <DebugSymbols>true</DebugSymbols>
