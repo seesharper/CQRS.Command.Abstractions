@@ -1,9 +1,17 @@
-#load "nuget:Dotnet.Build, 0.9.0"
+#load "nuget:Dotnet.Build, 0.22.0"
 #load "nuget:dotnet-steps, 0.0.2"
+
+[StepDescription("Runs the tests with test coverage")]
+Step testcoverage = () => DotNet.TestWithCodeCoverage();
+
+[StepDescription("Runs all the tests for all target frameworks")]
+Step test = () => DotNet.Test();
 
 [StepDescription("Creates the NuGet packages")]
 Step pack = () =>
 {
+    test();
+    testcoverage();
     DotNet.Pack();
 };
 

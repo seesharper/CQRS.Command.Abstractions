@@ -26,5 +26,28 @@ Typically we use dependency injection to inject either an `ICommandHandler<TComm
 
 Please refer to [CQRS.LightInject](https://github.com/seesharper/CQRS.LightInject) and/or [CQRS.Microsoft.Extensions.DependencyInjection](https://github.com/seesharper/CQRS.Microsoft.Extensions.DependencyInjection) for examples of registration of command handlers. 
 
+### Command<TResult>
 
+In general we say that command don't have results, but in some cases it is needed even for commands to return something.
+An example could be if the primary key is automatically generated and we want to return the id for the new row in the database.
 
+To generalize around this scenario we can inherit from `Command<TResult>` which provide the `SetResult` method for setting the result and the `GetResult` method for getting the value.
+
+The `GetResult` method will throw an exception if the `SetResult` method is not called prior the the `GetResult` method.
+
+```c#
+public record InsertCustomerCommand(string Name) : Command<int>
+```
+
+The command handler looking something like this
+
+```c#
+public class InsertCustomer : ICommandHandler<InsertCustomerCommand>
+{
+    public async Task HandleAsync(InsertCustomerCommand command, CancellationToken cancellationToken = default)
+    {
+        // Insert the customer into the database and get the CustomerId
+        command.SetResult(CustomerId)
+    }
+}
+```
