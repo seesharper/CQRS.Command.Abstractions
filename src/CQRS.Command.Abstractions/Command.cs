@@ -35,5 +35,11 @@ namespace CQRS.Command.Abstractions
             _result = result;
             _resultHaveBeenSet = true;
         }
+
+        /// <summary>
+        /// Returns true if the result of the command has been set.
+        /// </summary>
+        /// <returns>true if the result has been set, otherwise false.</returns>
+        public bool HasResult() => _resultHaveBeenSet;
     }
 }

@@ -29,6 +29,18 @@ public class UnitTest1
         // Assert
         act.Should().Throw<InvalidOperationException>();
     }
+
+    [Fact]
+    public void ShouldSetHasResult()
+    {
+        var command = new TestCommand(42);
+
+        command.HasResult().Should().BeFalse();
+
+        command.SetResult(42);
+
+        command.HasResult().Should().BeTrue();
+    }
 }
 
 public record TestCommand(int Value) : Command<int>;
